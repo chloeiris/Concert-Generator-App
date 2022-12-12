@@ -14,5 +14,11 @@ with header:
 with sliders:
     st.header('What kind of playlist are you going to create?')
     st.subheader('Mood')
-    st.slider('Mood', 0, 100)
-    
+    st.slider("100 is happy mood", 0, 100)
+    st.subheader('Danceabilty')
+    st.slider("100 is very danceable", 0, 100)
+    st.subheader('Popularity')
+    st.slider("100 is very popular", 0, 100)
+    st.subheader('Energy')
+    st.slider("100 is very energetic", 0, 100)
+
