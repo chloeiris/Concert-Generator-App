@@ -24,13 +24,3 @@ with sliders:
     st.subheader('Energy')
     st.slider("100 is very energetic", 0, 100)
 
-    svs.vertical_slider(key=3, 
-                    default_value=20, 
-                    step=10, 
-                    min_value=0, 
-                    max_value=100,
-                    slider_color= 'green', #optional
-                    track_color='lightgray', #optional
-                    thumb_color = 'red', #optional
-                    )
-
