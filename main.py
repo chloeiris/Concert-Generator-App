@@ -71,7 +71,7 @@ with setlist:
 
     if show_all:
         st.dataframe(df)
-    if df_filter:
+    if filtered:
         st.dataframe(df_filter)
 
 
@@ -82,11 +82,11 @@ with counters:
     st.subheader("Total Duration")
     if show_all:
         st.write(round(df['dur'].sum() / 60, 2), 'minutes')
-    if df_filter:
+    if filtered:
         st.write(round(df_filter['dur'].sum() / 60, 2), 'minutes')
 
     st.subheader("Number of Songs")
     if show_all:
         st.write(df.shape[0])
-    if df_filter:
+    if filtered:
         st.write(df_filter.shape[0])
