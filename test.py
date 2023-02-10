@@ -30,7 +30,7 @@ for idx, i in enumerate(groups):
     key = f'member{str(idx)}'
     with columns[idx]:
         sliders[f'slider_group_{key}'] = svs.vertical_slider(key=key, default_value=i[1], step=1, min_value=min_value, max_value=max_value)
-        if sliders[f'slider_group_{key}'] == None:
+        if sliders[f'slider_group_{key}'] is None:
             sliders[f'slider_group_{key}']  = i[1]
         adjusted_data.append((i[0],sliders[f'slider_group_{key}'] ))
 df = pd.DataFrame(adjusted_data, columns=['Date','Value'])
