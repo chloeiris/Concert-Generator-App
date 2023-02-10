@@ -30,7 +30,9 @@ with sliders:
     energy = st.slider("100 is very energetic", 0, 100)
 
 
-params = {'val' : mood, 'dnce' : danceability, 'pop' : popularity, 'nrgy': energy}
+    params = {'val' : mood, 'dnce' : danceability, 'pop' : popularity, 'nrgy': energy}
+
+    st.write(mood)
 
 with setlist:
     st.dataframe(df)
