@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 
 df = pd.read_csv('topMusicJOB.csv', index_col = 0)
 
@@ -34,4 +33,4 @@ with sliders:
 params = {'val' : mood, 'dnce' : danceability, 'pop' : popularity, 'nrgy': energy}
 
 with setlist:
-    df.display()
+    display(df)
