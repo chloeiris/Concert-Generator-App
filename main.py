@@ -30,10 +30,6 @@ with sliders:
     energy = st.slider("100 is very energetic", 0, 100)
 
 
-    #params = {'val' : mood, 'dnce' : danceability, 'pop' : popularity, 'nrgy': energy}
-
-    #st.write(mood)
-
 nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
 dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
 val_filter = df['val'].isin(range(mood-20, mood+20))
@@ -42,7 +38,12 @@ pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
 df_filter = df[nrgy_filter & dnce_filter & val_filter & pop_filter]
 
 with setlist:
-    st.dataframe(df_filter)
+    show_all = st.checkbox("Show all songs in the database")
+
+    if show_all:
+        st.dataframe(df)
+    else:
+        st.dataframe(df_filter)
 
 with counters:
     st.header("Counters")
