@@ -4,7 +4,6 @@ import pandas as pd
 df = pd.read_csv('topMusicJOB.csv', index_col = 0)
 
 df.rename({'Unnamed: 0' : 'id', 'top genre': 'genre'}, axis=1, inplace=True)
-display(df)
 
 header = st.container()
 sliders = st.container()
@@ -33,5 +32,5 @@ with sliders:
 
 params = {'val' : mood, 'dnce' : danceability, 'pop' : popularity, 'nrgy': energy}
 
-#with setlist:
-#    display(df)
+with setlist:
+    st.dataframe(df)
