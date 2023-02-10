@@ -29,6 +29,7 @@ with sliders:
 
     if show_mood:
         val_filter = df['val'].isin(range(mood-20, mood+20))
+        #filtered.append(val_filter)
         df_val = df[val_filter]
         filtered.append(df_val)
 
@@ -38,6 +39,7 @@ with sliders:
 
     if show_dnce:
         dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
+        #filtered.append(dnce_filter)
         df_dnce = df[dnce_filter]
         filtered.append(df_dnce)
 
@@ -47,6 +49,7 @@ with sliders:
 
     if show_pop:
         pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
+        #filtered.append(pop_filter)
         df_pop = df[pop_filter]
         filtered.append(df_pop)
 
@@ -56,6 +59,7 @@ with sliders:
 
     if show_energy:   
         nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
+        #filtered.append(nrgy_filter)
         df_nrgy = df[nrgy_filter]
         filtered.append(df_nrgy)
 
@@ -63,6 +67,7 @@ with sliders:
 
 if filtered:
     df_filter = pd.concat(filtered, axis = 0)
+    df_filter.drop_duplicates(inplace=True)
 
 
 
