@@ -48,7 +48,7 @@ with counters:
     st.header("Counters")
 
     st.subheader("Total Duration")
-    st.write(df_filter['dur'].sum() / 60, 'minutes')
+    st.write(round(df_filter['dur'].sum() / 60, 2), 'minutes')
 
     st.subheader("Number of Songs")
     st.write(df_filter.shape[0])
