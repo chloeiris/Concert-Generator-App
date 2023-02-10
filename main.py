@@ -2,6 +2,8 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 
+from IPython.display import display
+
 df = pd.read_csv('topMusicJOB.csv', index_col = 0)
 
 df.rename({'Unnamed: 0' : 'id', 'top genre': 'genre'}, axis=1, inplace=True)
@@ -32,3 +34,6 @@ with sliders:
 
 
 params = {'val' : mood, 'dnce' : danceability, 'pop' : popularity, 'nrgy': energy}
+
+with setlist:
+    display(df)
