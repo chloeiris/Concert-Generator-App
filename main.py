@@ -19,21 +19,31 @@ with sliders:
 
     st.subheader('Mood')
     mood = st.slider("100 is happy mood", 0, 100)
+    show_mood = st.checkbox("Apply mood filter")
 
     st.subheader('Danceabilty')
     danceability = st.slider("100 is very danceable", 0, 100)
+    show_dnce = st.checkbox("Apply danceability filter")
 
     st.subheader('Popularity')
     popularity = st.slider("100 is very popular", 0, 100)
+    show_pop = st.checkbox("Apply popularity filter")
 
     st.subheader('Energy')
     energy = st.slider("100 is very energetic", 0, 100)
+    show_energy = st.checkbox("Apply energy filter")
 
+if show_energy:   
+    nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
 
-nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
-dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
-val_filter = df['val'].isin(range(mood-20, mood+20))
-pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
+if show_dnce:
+    dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
+
+if show_mood:
+    val_filter = df['val'].isin(range(mood-20, mood+20))
+
+if show_pop:
+    pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
 
 df_filter = df[nrgy_filter & dnce_filter & val_filter & pop_filter]
 
