@@ -35,15 +35,22 @@ with sliders:
 
 if show_energy:   
     nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
+else: nrgy_filter = ''
 
 if show_dnce:
     dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
+else:
+    dnce_filter = ''
 
 if show_mood:
     val_filter = df['val'].isin(range(mood-20, mood+20))
+else:
+    val_filter = ''
 
 if show_pop:
     pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
+else:
+    pop_filter = ''
 
 df_filter = df[nrgy_filter & dnce_filter & val_filter & pop_filter]
 
