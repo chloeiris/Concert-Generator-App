@@ -11,52 +11,60 @@ plot = st.container()
 setlist = st.container()
 counters = st.container()
 
+
 with header:
     st.title('Setlist Generator')
 
+
+
+filtered = []
+
 with sliders:
+    #left_col = st.column()
     st.header('What kind of playlist are you going to create?')
 
     st.subheader('Mood')
     mood = st.slider("100 is happy mood", 0, 100)
     show_mood = st.checkbox("Apply mood filter")
 
+    if show_mood:
+        val_filter = df['val'].isin(range(mood-20, mood+20))
+        df_val = df[val_filter]
+        filtered.append(df_val)
+
     st.subheader('Danceabilty')
     danceability = st.slider("100 is very danceable", 0, 100)
     show_dnce = st.checkbox("Apply danceability filter")
+
+    if show_dnce:
+        dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
+        df_dnce = df[dnce_filter]
+        filtered.append(df_dnce)
 
     st.subheader('Popularity')
     popularity = st.slider("100 is very popular", 0, 100)
     show_pop = st.checkbox("Apply popularity filter")
 
+    if show_pop:
+        pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
+        df_pop = df[pop_filter]
+        filtered.append(df_pop)
+
     st.subheader('Energy')
     energy = st.slider("100 is very energetic", 0, 100)
     show_energy = st.checkbox("Apply energy filter")
 
-filtered = []
-
-if show_energy:   
-    nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
-    df_nrgy = df[nrgy_filter]
-    filtered.append(df_nrgy)
-
-if show_dnce:
-    dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
-    df_dnce = df[dnce_filter]
-    filtered.append(df_dnce)
-
-if show_mood:
-    val_filter = df['val'].isin(range(mood-20, mood+20))
-    df_val = df[val_filter]
-    filtered.append(df_val)
-
-if show_pop:
-    pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
-    df_pop = df[pop_filter]
-    filtered.append(df_pop)
+    if show_energy:   
+        nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
+        df_nrgy = df[nrgy_filter]
+        filtered.append(df_nrgy)
 
 
-df_filter = pd.concat(filtered)
+
+if filtered:
+    df_filter = pd.concat(filtered, axis = 0)
+
+
 
 with setlist:
     show_all = st.checkbox("Show all songs in the database")
@@ -65,6 +73,8 @@ with setlist:
         st.dataframe(df)
     else:
         st.dataframe(df_filter)
+
+
 
 with counters:
     st.header("Counters")
