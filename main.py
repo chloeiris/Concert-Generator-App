@@ -43,3 +43,12 @@ df_filter = df[nrgy_filter & dnce_filter & val_filter & pop_filter]
 
 with setlist:
     st.dataframe(df_filter)
+
+with counters:
+    st.header("Counters")
+
+    st.subheader("Total Duration")
+    st.write(df_filter['dur'].sum())
+
+    st.subheader("Number of Songs")
+    st.write(df_filter.shape[0])
