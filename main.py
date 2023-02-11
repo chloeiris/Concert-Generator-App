@@ -89,16 +89,14 @@ with counters:
             hours = int(df['dur'].sum() / 3600)
             mod_hour = df['dur'].sum() % 3600
             minutes = int((mod_hour) / 60)
-            mod_minutes = mod_hour % 60
-            seconds = int(mod_minutes / 60)
+            seconds = mod_hour % 60
             st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
     else:
         try:
             hours = int(df_filter['dur'].sum() / 3600)
             mod_hour = df_filter['dur'].sum() % 3600
             minutes = int((mod_hour) / 60)
-            mod_minutes = mod_hour % 60
-            seconds = int(mod_minutes / 60)
+            seconds = mod_hour % 60
             st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
         except:
             st.write("No filters selected.")
