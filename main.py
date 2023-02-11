@@ -104,11 +104,18 @@ with counters:
     st.subheader("Total Duration")
     if show_all:
         st.write(round(df['dur'].sum() / 60, 2), 'minutes')
-    if filtered:
-        st.write(round(df_filter['dur'].sum() / 60, 2), 'minutes')
+    else:
+        try:
+            st.write(round(df_filter['dur'].sum() / 60, 2), 'minutes')
+        except:
+            st.write("No filters selected.")
+
 
     st.subheader("Number of Songs")
     if show_all:
         st.write(df.shape[0])
-    if filtered:
-        st.write(df_filter.shape[0])
+    else:
+        try:
+            st.write(df_filter.shape[0])
+        except:
+            st.write("No filters selected.")
