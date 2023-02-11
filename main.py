@@ -5,6 +5,8 @@ df = pd.read_csv('topMusicJOB.csv', index_col = 0)
 
 df.rename({'Unnamed: 0' : 'id', 'top genre': 'genre'}, axis=1, inplace=True)
 
+
+
 header = st.container()
 sliders = st.container()
 plot = st.container()
@@ -12,12 +14,11 @@ setlist = st.container()
 counters = st.container()
 
 
+
 with header:
     st.title('Setlist Generator')
 
 
-
-#filtered = []
 
 with sliders:
     #left_col = st.column()
@@ -31,9 +32,7 @@ with sliders:
         val_filter = df['val'].isin(range(mood-20, mood+20))
     else:
         val_filter = df['val']
-        #filtered.append(val_filter)
-        #df_val = df[val_filter]
-        #filtered.append(df_val)
+
 
     st.subheader('Danceabilty')
     danceability = st.slider("100 is very danceable", 0, 100, step = 20)
@@ -43,9 +42,7 @@ with sliders:
         dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
     else:
         dnce_filter = df['dnce']
-        #filtered.append(dnce_filter)
-        #df_dnce = df[dnce_filter]
-        #filtered.append(df_dnce)
+            
 
     st.subheader('Popularity')
     popularity = st.slider("100 is very popular", 0, 100, step = 20)
@@ -55,9 +52,7 @@ with sliders:
         pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
     else:
        pop_filter = df['pop']
-        #filtered.append(pop_filter)
-        #df_pop = df[pop_filter]
-        #filtered.append(df_pop)
+    
 
     st.subheader('Energy')
     energy = st.slider("100 is very energetic", 0, 100, step = 20)
@@ -67,17 +62,6 @@ with sliders:
         nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
     else:
         nrgy_filter = df['nrgy']
-        #filtered.append(nrgy_filter)
-        #df_nrgy = df[nrgy_filter]
-        #filtered.append(df_nrgy)
-
-
-
-#if filtered:
-
-    
-    #df_filter = pd.concat(filtered, axis = 0)
-    #df_filter.drop_duplicates(inplace=True)
 
 
 
@@ -86,7 +70,6 @@ with setlist:
 
     if show_all:
         st.dataframe(df)
-
     else:
         try:
             df_filter = df[val_filter & dnce_filter & pop_filter & nrgy_filter]
@@ -103,10 +86,14 @@ with counters:
 
     st.subheader("Total Duration")
     if show_all:
-        st.write(round(df['dur'].sum() / 60, 2), 'minutes')
+            hours = int(df['dur'].sum()/3600)
+            minutes = round(df['dur'].sum()%3600, 2) /60
+            st.write(hours, 'hours', ',', minutes, 'minutes')
     else:
         try:
-            st.write(round(df_filter['dur'].sum() / 60, 2), 'minutes')
+            hours = int(df_filter['dur'].sum()/3600)
+            minutes = round(df_filter['dur'].sum()%3600, 2) /60
+            st.write(hours, 'hours', ',', minutes, 'minutes')
         except:
             st.write("No filters selected.")
 
