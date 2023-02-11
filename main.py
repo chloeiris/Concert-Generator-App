@@ -87,13 +87,19 @@ with counters:
     st.subheader("Total Duration")
     if show_all:
             hours = int(df['dur'].sum()/3600)
-            minutes = round(df['dur'].sum()%3600, 2) /60
-            st.write(hours, 'hours', ',', minutes, 'minutes')
+            mod_hour = df['dur'].sum()%3600
+            minutes = round((mod_hour) / 60, 2)
+            mod_minutes = mod_hour%60
+            seconds = round(mod_minutes / 60, 2)
+            st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
     else:
         try:
             hours = int(df_filter['dur'].sum()/3600)
-            minutes = round(df_filter['dur'].sum()%3600, 2) /60
-            st.write(hours, 'hours', ',', minutes, 'minutes')
+            mod_hour = df_filter['dur'].sum()%3600
+            minutes = round((mod_hour) / 60, 2)
+            mod_minutes = mod_hour%60
+            seconds = round(mod_minutes / 60, 2)
+            st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
         except:
             st.write("No filters selected.")
 
