@@ -24,7 +24,7 @@ with sliders:
     st.header('What kind of playlist are you going to create?')
 
     st.subheader('Mood')
-    mood = st.slider("100 is happy mood", 0, 100)
+    mood = st.slider("100 is happy mood", 0, 100, step = 20)
     show_mood = st.checkbox("Apply mood filter")
 
     if show_mood:
@@ -36,7 +36,7 @@ with sliders:
         #filtered.append(df_val)
 
     st.subheader('Danceabilty')
-    danceability = st.slider("100 is very danceable", 0, 100)
+    danceability = st.slider("100 is very danceable", 0, 100, step = 20)
     show_dnce = st.checkbox("Apply danceability filter")
 
     if show_dnce:
@@ -48,7 +48,7 @@ with sliders:
         #filtered.append(df_dnce)
 
     st.subheader('Popularity')
-    popularity = st.slider("100 is very popular", 0, 100)
+    popularity = st.slider("100 is very popular", 0, 100, step = 20)
     show_pop = st.checkbox("Apply popularity filter")
 
     if show_pop:
@@ -60,7 +60,7 @@ with sliders:
         #filtered.append(df_pop)
 
     st.subheader('Energy')
-    energy = st.slider("100 is very energetic", 0, 100)
+    energy = st.slider("100 is very energetic", 0, 100, step = 20)
     show_energy = st.checkbox("Apply energy filter")
 
     if show_energy:   
