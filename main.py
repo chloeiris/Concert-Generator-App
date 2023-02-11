@@ -82,18 +82,19 @@ with sliders:
 
 
 with setlist:
-    try:
-        df_filter = df[val_filter & dnce_filter & pop_filter & nrgy_filter]
-
-    except:
-        st.write("No filters selected.")
-        
     show_all = st.checkbox("Show all songs in the database")
 
     if show_all:
         st.dataframe(df)
+
     else:
-        st.dataframe(df_filter)
+        try:
+            df_filter = df[val_filter & dnce_filter & pop_filter & nrgy_filter]
+            st.dataframe(df_filter)
+
+        except:
+            st.write("No filters selected.")
+        
 
 
 
