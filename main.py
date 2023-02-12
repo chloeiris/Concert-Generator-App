@@ -69,14 +69,14 @@ with setlist:
     show_all = st.checkbox("Show all songs in the database")
 
     if show_all:
-        data = st.dataframe(df)
+        st.dataframe(df)
     else:
-        try:
-            df_filter = df[val_filter & dnce_filter & pop_filter & nrgy_filter]
-            data = st.dataframe(df_filter)
+        #try:
+        df_filter = df[val_filter & dnce_filter & pop_filter & nrgy_filter]
+        st.dataframe(df_filter)
 
-        except:
-            st.write("No filters selected.")
+        #except:
+            #st.write("No filters selected.")
         
 
 
@@ -86,56 +86,85 @@ with counters:
 
     st.subheader("Total Duration")
     if show_all:
-            hours = int(df['dur'].sum() / 3600)
-            mod_hour = df['dur'].sum() % 3600
-            minutes = int((mod_hour) / 60)
-            seconds = mod_hour % 60
-            st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
+        hours = int(df['dur'].sum() / 3600)
+        mod_hour = df['dur'].sum() % 3600
+        minutes = int((mod_hour) / 60)
+        seconds = mod_hour % 60
+        st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
     else:
-        try:
-            hours = int(df_filter['dur'].sum() / 3600)
-            mod_hour = df_filter['dur'].sum() % 3600
-            minutes = int((mod_hour) / 60)
-            seconds = mod_hour % 60
-            st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
-        except:
-            st.write("No filters selected.")
+        #try:
+        hours = int(df_filter['dur'].sum() / 3600)
+        mod_hour = df_filter['dur'].sum() % 3600
+        minutes = int((mod_hour) / 60)
+        seconds = mod_hour % 60
+        st.write(hours, 'hours', ',', minutes, 'minutes', ',', seconds, 'seconds')
+        #except:
+            #st.write("No filters selected.")
 
 
     st.subheader("Number of Songs")
     if show_all:
         st.write(df.shape[0])
     else:
-        try:
-            st.write(df_filter.shape[0])
-        except:
-            st.write("No filters selected.")
+        #try:
+        st.write(df_filter.shape[0])
+        #except:
+            #st.write("No filters selected.")
 
+st.header("Playlist Traits Viz")
+if show_all:
 
-
-fig, axes = plt.subplots(figsize=(20, 15))
-axes.boxplot(x=df_filter['val'], widths=0.25, positions=[0.5], patch_artist= True, notch=False, labels=["mood"],
+    fig, axes = plt.subplots(figsize=(20, 15))
+    axes.boxplot(x=df['val'], widths=0.25, positions=[0.5], patch_artist= True, notch=False, labels=["mood"],
                     boxprops=dict(facecolor='mediumvioletred', color='red', linewidth=1.5),
                     capprops=dict(color="red", linewidth=1.5),
                     whiskerprops=dict(color="red", linewidth=1.5),
                     flierprops=dict(color="red", markeredgecolor="red", linewidth=1.5),
                     medianprops=dict(color="red", linewidth=1.5))
-axes.boxplot(x=df_filter['dnce'], widths=0.25, positions=[1], patch_artist= True, notch=False, labels=["danceability"], 
+    axes.boxplot(x=df['dnce'], widths=0.25, positions=[1], patch_artist= True, notch=False, labels=["danceability"], 
                     boxprops=dict(facecolor='lightseagreen', color='darkorange', linewidth=1.5),
                     capprops=dict(color="darkorange", linewidth=1.5),
                     whiskerprops=dict(color="darkorange", linewidth=1.5),
                     flierprops=dict(color="darkorange", markeredgecolor="darkorange", linewidth=1.5),
                     medianprops=dict(color="darkorange", linewidth=1.5))
-axes.boxplot(x=df_filter['nrgy'], widths=0.25, positions=[1.5], patch_artist= True, notch=False, labels=["popularity"], 
+    axes.boxplot(x=df['nrgy'], widths=0.25, positions=[1.5], patch_artist= True, notch=False, labels=["popularity"], 
                     boxprops=dict(facecolor='mediumseagreen', color='orange', linewidth=1.5),
                     capprops=dict(color="orange", linewidth=1.5),
                     whiskerprops=dict(color="orange", linewidth=1.5),
                     flierprops=dict(color="orange", markeredgecolor="orange", linewidth=1.5),
                     medianprops=dict(color="orange", linewidth=1.5))
-axes.boxplot(x=df_filter['nrgy'], widths=0.25, positions=[2], patch_artist= True, notch=False, labels=["energy"], 
+    axes.boxplot(x=df['nrgy'], widths=0.25, positions=[2], patch_artist= True, notch=False, labels=["energy"], 
                     boxprops=dict(facecolor='orangered', color='lawngreen', linewidth=1.5),
                     capprops=dict(color="lawngreen", linewidth=1.5),
                     whiskerprops=dict(color="lawngreen", linewidth=1.5),
                     flierprops=dict(color="lawngreen", markeredgecolor="lawngreen", linewidth=1.5),
                     medianprops=dict(color="lawngreen", linewidth=1.5))
-st.pyplot(fig)
+    st.pyplot(fig)
+
+else:
+    fig, axes = plt.subplots(figsize=(20, 15))
+    axes.boxplot(x=df_filter['val'], widths=0.25, positions=[0.5], patch_artist= True, notch=False, labels=["mood"],
+                    boxprops=dict(facecolor='mediumvioletred', color='red', linewidth=1.5),
+                    capprops=dict(color="red", linewidth=1.5),
+                    whiskerprops=dict(color="red", linewidth=1.5),
+                    flierprops=dict(color="red", markeredgecolor="red", linewidth=1.5),
+                    medianprops=dict(color="red", linewidth=1.5))
+    axes.boxplot(x=df_filter['dnce'], widths=0.25, positions=[1], patch_artist= True, notch=False, labels=["danceability"], 
+                    boxprops=dict(facecolor='lightseagreen', color='darkorange', linewidth=1.5),
+                    capprops=dict(color="darkorange", linewidth=1.5),
+                    whiskerprops=dict(color="darkorange", linewidth=1.5),
+                    flierprops=dict(color="darkorange", markeredgecolor="darkorange", linewidth=1.5),
+                    medianprops=dict(color="darkorange", linewidth=1.5))
+    axes.boxplot(x=df_filter['nrgy'], widths=0.25, positions=[1.5], patch_artist= True, notch=False, labels=["popularity"], 
+                    boxprops=dict(facecolor='mediumseagreen', color='orange', linewidth=1.5),
+                    capprops=dict(color="orange", linewidth=1.5),
+                    whiskerprops=dict(color="orange", linewidth=1.5),
+                    flierprops=dict(color="orange", markeredgecolor="orange", linewidth=1.5),
+                    medianprops=dict(color="orange", linewidth=1.5))
+    axes.boxplot(x=df_filter['nrgy'], widths=0.25, positions=[2], patch_artist= True, notch=False, labels=["energy"], 
+                    boxprops=dict(facecolor='orangered', color='lawngreen', linewidth=1.5),
+                    capprops=dict(color="lawngreen", linewidth=1.5),
+                    whiskerprops=dict(color="lawngreen", linewidth=1.5),
+                    flierprops=dict(color="lawngreen", markeredgecolor="lawngreen", linewidth=1.5),
+                    medianprops=dict(color="lawngreen", linewidth=1.5))
+    st.pyplot(fig)
