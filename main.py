@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
 
 
 df = pd.read_csv('topMusicJOB.csv', index_col = 0)
@@ -111,6 +113,8 @@ with counters:
         #except:
             #st.write("No filters selected.")
 
+
+
 st.header("Playlist Traits Viz")
 
 tab1, tab2 = st.tabs(["Main traits", "Playlist Flow"])
@@ -142,7 +146,15 @@ if show_all:
                     whiskerprops=dict(color="lawngreen", linewidth=1.5),
                     flierprops=dict(color="lawngreen", markeredgecolor="lawngreen", linewidth=1.5),
                     medianprops=dict(color="lawngreen", linewidth=1.5))
-    st.pyplot(fig)
+    tab1.pyplot(fig)
+
+    fig2, axes2 = plt.subplots(figsize=(20, 15))
+    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['val'], data=df, ax=axes2, color='mediumvioletred', label='mood')
+    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['dnce'], data=df, ax=axes2, color='lightseagreen', label='danceability')
+    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['pop'], data=df, ax=axes2, color='mediumseagreen', label='popularity')
+    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['nrgy'], data=df, ax=axes2, color='orangered', label='energy')
+    axes2.legend()
+    tab2.pyplot(fig2)
 
 else:
     fig, axes = plt.subplots(figsize=(20, 15))
@@ -171,3 +183,12 @@ else:
                     flierprops=dict(color="lawngreen", markeredgecolor="lawngreen", linewidth=1.5),
                     medianprops=dict(color="lawngreen", linewidth=1.5))
     tab1.pyplot(fig)
+
+
+    fig2, axes2 = plt.subplots(figsize=(20, 15))
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['val'], data=df_filter, ax=axes2, color='mediumvioletred', label='mood')
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['dnce'], data=df_filter, ax=axes2, color='lightseagreen', label='danceability')
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['pop'], data=df_filter, ax=axes2, color='mediumseagreen', label='popularity')
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['nrgy'], data=df_filter, ax=axes2, color='orangered', label='energy')
+    axes2.legend()
+    tab2.pyplot(fig2)
