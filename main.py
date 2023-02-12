@@ -1,7 +1,7 @@
 import streamlit as st
 import pandas as pd
 #import numpy as np
-import matplotlib as plt
+#import matplotlib as plt
 #import seaborn as sns
 
 df = pd.read_csv('topMusicJOB.csv', index_col = 0)
@@ -114,30 +114,30 @@ with counters:
 
 
 
-with plot:
-    fig, axes = plt.subplots(figsize=(20, 15))
-    axes.boxplot(x=data['val'], widths=0.25, positions=[0.5], patch_artist= True, notch=True, labels=["mood"],
-                        boxprops=dict(facecolor='mediumvioletred', color='red', linewidth=1.5),
-                        capprops=dict(color="red", linewidth=1.5),
-                        whiskerprops=dict(color="red", linewidth=1.5),
-                        flierprops=dict(color="red", markeredgecolor="red", linewidth=1.5),
-                        medianprops=dict(color="red", linewidth=1.5))
-    axes.boxplot(x=data['dnce'], widths=0.25, positions=[1], patch_artist= True, notch=True, labels=["danceability"], 
-                        boxprops=dict(facecolor='lightseagreen', color='darkorange', linewidth=1.5),
-                        capprops=dict(color="darkorange", linewidth=1.5),
-                        whiskerprops=dict(color="darkorange", linewidth=1.5),
-                        flierprops=dict(color="darkorange", markeredgecolor="darkorange", linewidth=1.5),
-                        medianprops=dict(color="darkorange", linewidth=1.5))
-    axes.boxplot(x=data['nrgy'], widths=0.25, positions=[1.5], patch_artist= True, notch=True, labels=["popularity"], 
-                        boxprops=dict(facecolor='mediumseagreen', color='orange', linewidth=1.5),
-                        capprops=dict(color="orange", linewidth=1.5),
-                        whiskerprops=dict(color="orange", linewidth=1.5),
-                        flierprops=dict(color="orange", markeredgecolor="orange", linewidth=1.5),
-                        medianprops=dict(color="orange", linewidth=1.5))
-    axes.boxplot(x=data['nrgy'], widths=0.25, positions=[2], patch_artist= True, notch=True, labels=["energy"], 
-                        boxprops=dict(facecolor='orangered', color='lawngreen', linewidth=1.5),
-                        capprops=dict(color="lawngreen", linewidth=1.5),
-                        whiskerprops=dict(color="lawngreen", linewidth=1.5),
-                        flierprops=dict(color="lawngreen", markeredgecolor="lawngreen", linewidth=1.5),
-                        medianprops=dict(color="lawngreen", linewidth=1.5))
-    st.pyplot(fig)
+#with plot:
+    #fig, axes = plt.subplots(figsize=(20, 15))
+    #axes.boxplot(x=data['val'], widths=0.25, positions=[0.5], patch_artist= True, notch=True, labels=["mood"],
+    #                    boxprops=dict(facecolor='mediumvioletred', color='red', linewidth=1.5),
+    #                    capprops=dict(color="red", linewidth=1.5),
+    #                    whiskerprops=dict(color="red", linewidth=1.5),
+   #                     flierprops=dict(color="red", markeredgecolor="red", linewidth=1.5),
+    #                    medianprops=dict(color="red", linewidth=1.5))
+    #axes.boxplot(x=data['dnce'], widths=0.25, positions=[1], patch_artist= True, notch=True, labels=["danceability"], 
+    #                    boxprops=dict(facecolor='lightseagreen', color='darkorange', linewidth=1.5),
+    #                    capprops=dict(color="darkorange", linewidth=1.5),
+    #                    whiskerprops=dict(color="darkorange", linewidth=1.5),
+    #                    flierprops=dict(color="darkorange", markeredgecolor="darkorange", linewidth=1.5),
+    #                    medianprops=dict(color="darkorange", linewidth=1.5))
+    #axes.boxplot(x=data['nrgy'], widths=0.25, positions=[1.5], patch_artist= True, notch=True, labels=["popularity"], 
+   #                     boxprops=dict(facecolor='mediumseagreen', color='orange', linewidth=1.5),
+    #                    capprops=dict(color="orange", linewidth=1.5),
+    #                    whiskerprops=dict(color="orange", linewidth=1.5),
+    #                    flierprops=dict(color="orange", markeredgecolor="orange", linewidth=1.5),
+    #                    medianprops=dict(color="orange", linewidth=1.5))
+    #axes.boxplot(x=data['nrgy'], widths=0.25, positions=[2], patch_artist= True, notch=True, labels=["energy"], 
+    #                    boxprops=dict(facecolor='orangered', color='lawngreen', linewidth=1.5),
+    #                    capprops=dict(color="lawngreen", linewidth=1.5),
+    #                    whiskerprops=dict(color="lawngreen", linewidth=1.5),
+    #                    flierprops=dict(color="lawngreen", markeredgecolor="lawngreen", linewidth=1.5),
+    #                    medianprops=dict(color="lawngreen", linewidth=1.5))
+    #st.pyplot(fig)
