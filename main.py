@@ -25,7 +25,7 @@ with header:
 #with sliders:
     
 with st.sidebar:
-    st.header('What kind of playlist are you going to create?')
+    st.title(':red[What kind of playlist are you going to create?]')
 
     st.subheader('Mood')
     mood = st.slider("100 is happy mood", 0, 100, step = 20)
