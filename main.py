@@ -112,6 +112,9 @@ with counters:
             #st.write("No filters selected.")
 
 st.header("Playlist Traits Viz")
+
+tab1, tab2 = st.tabs(["Main traits", "Playlist Flow"])
+
 if show_all:
 
     fig, axes = plt.subplots(figsize=(20, 15))
@@ -167,4 +170,4 @@ else:
                     whiskerprops=dict(color="lawngreen", linewidth=1.5),
                     flierprops=dict(color="lawngreen", markeredgecolor="lawngreen", linewidth=1.5),
                     medianprops=dict(color="lawngreen", linewidth=1.5))
-    st.pyplot(fig)
+    tab1.pyplot(fig)
