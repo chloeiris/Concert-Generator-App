@@ -1,4 +1,5 @@
 import streamlit as st
+import  streamlit_vertical_slider  as svs
 import pandas as pd
 
 df = pd.read_csv('topMusicJOB.csv', index_col = 0)
@@ -18,12 +19,15 @@ counters = st.container()
 with header:
     st.title('Setlist Generator')
 
+    svs.vertical_slider("Test", 0, 100)
+
 
 
 with sliders:
     #left_col = st.column()
+    
     st.header('What kind of playlist are you going to create?')
-
+    
     st.subheader('Mood')
     mood = st.slider("100 is happy mood", 0, 100, step = 20)
     show_mood = st.checkbox("Apply mood filter")
