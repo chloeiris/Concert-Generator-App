@@ -13,19 +13,20 @@ plot = st.container()
 setlist = st.container()
 counters = st.container()
 
-left_col, right_col = st.columns(2)
+#left_col, right_col = st.columns(2)
 
 
 
 with header:
     st.title('Setlist Generator')
-    st.header('What kind of playlist are you going to create?')
 
 
 
 #with sliders:
     
-with left_col:
+with st.sidebar:
+    st.header('What kind of playlist are you going to create?')
+
     st.subheader('Mood')
     mood = st.slider("100 is happy mood", 0, 100, step = 20)
     show_mood = st.checkbox("Apply mood filter")
@@ -67,9 +68,9 @@ with left_col:
 
 
 
-#with setlist:
+with setlist:
 
-with right_col:
+#with right_col:
     show_all = st.checkbox("Show all songs in the database")
 
     if show_all:
