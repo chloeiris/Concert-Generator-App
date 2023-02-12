@@ -13,7 +13,7 @@ plot = st.container()
 setlist = st.container()
 counters = st.container()
 
-left_col, right_col = st.columns([1,2])
+left_col, right_col = st.columns(2)
 
 
 
@@ -69,7 +69,7 @@ with sliders:
 
 
 with setlist:
-    
+
     with right_col:
         show_all = st.checkbox("Show all songs in the database")
 
