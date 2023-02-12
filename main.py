@@ -17,7 +17,7 @@ counters = st.container()
 
 
 with header:
-    st.title('Setlist Generator')
+    st.title('Playlist Generator')
 
 
     
