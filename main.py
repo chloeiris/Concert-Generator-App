@@ -8,12 +8,9 @@ df.rename({'Unnamed: 0' : 'id', 'top genre': 'genre'}, axis=1, inplace=True)
 
 
 header = st.container()
-sliders = st.container()
 plot = st.container()
 setlist = st.container()
 counters = st.container()
-
-#left_col, right_col = st.columns(2)
 
 
 
@@ -21,8 +18,6 @@ with header:
     st.title('Setlist Generator')
 
 
-
-#with sliders:
     
 with st.sidebar:
     st.title(':red[What kind of playlist are you going to create?]')
@@ -34,7 +29,7 @@ with st.sidebar:
     if show_mood:
         val_filter = df['val'].isin(range(mood-20, mood+20))
     else:
-        val_filter = df['val']
+        val_filter = df['val'].isin(range(100))
 
 
     st.subheader('Danceabilty')
@@ -44,7 +39,7 @@ with st.sidebar:
     if show_dnce:
         dnce_filter = df['dnce'].isin(range(danceability-20, danceability+20))
     else:
-        dnce_filter = df['dnce']
+        dnce_filter = df['dnce'].isin(range(100))
             
 
     st.subheader('Popularity')
@@ -54,7 +49,7 @@ with st.sidebar:
     if show_pop:
         pop_filter = df['pop'].isin(range(popularity-20, popularity+20))
     else:
-        pop_filter = df['pop']
+        pop_filter = df['pop'].isin(range(100))
     
 
     st.subheader('Energy')
@@ -64,13 +59,11 @@ with st.sidebar:
     if show_energy:   
         nrgy_filter = df['nrgy'].isin(range(energy-20, energy+20))
     else:
-        nrgy_filter = df['nrgy']
+        nrgy_filter = df['nrgy'].isin(range(100))
 
 
 
 with setlist:
-
-#with right_col:
     show_all = st.checkbox("Show all songs in the database")
 
     if show_all:
