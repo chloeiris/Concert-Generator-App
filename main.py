@@ -119,6 +119,11 @@ st.header("Playlist Traits Viz")
 
 tab1, tab2 = st.tabs(["Main traits", "Playlist Flow"])
 
+check_mood = tab2.checkbox("Show mood")
+check_dnce = tab2.checkbox("Show danceability")
+check_pop = tab2.checkbox("Show popularity")
+check_nrgy = tab2.checkbox("Show energy")
+
 if show_all:
 
     fig, axes = plt.subplots(figsize=(20, 15))
@@ -149,11 +154,15 @@ if show_all:
     tab1.pyplot(fig)
 
     fig2, axes2 = plt.subplots(figsize=(20, 15))
-    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['val'], data=df, ax=axes2, color='mediumvioletred', label='mood')
-    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['dnce'], data=df, ax=axes2, color='lightseagreen', label='danceability')
-    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['pop'], data=df, ax=axes2, color='mediumseagreen', label='popularity')
-    sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['nrgy'], data=df, ax=axes2, color='orangered', label='energy')
-    axes2.legend()
+    if check_mood:
+        sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['val'], data=df, ax=axes2, color='mediumvioletred', label='mood')
+    if check_dnce:
+        sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['dnce'], data=df, ax=axes2, color='lightseagreen', label='danceability')
+    if check_pop:
+        sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['pop'], data=df, ax=axes2, color='mediumseagreen', label='popularity')
+    if check_nrgy:
+        sns.lineplot(x=np.linspace(0,df['dur'].sum(),num=df.shape[0]), y=df['nrgy'], data=df, ax=axes2, color='orangered', label='energy')
+    axes2.legend(fontsize=15)
     tab2.pyplot(fig2)
 
 else:
@@ -186,9 +195,17 @@ else:
 
 
     fig2, axes2 = plt.subplots(figsize=(20, 15))
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['val'], data=df_filter, ax=axes2, color='mediumvioletred', label='mood')
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['dnce'], data=df_filter, ax=axes2, color='lightseagreen', label='danceability')
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['pop'], data=df_filter, ax=axes2, color='mediumseagreen', label='popularity')
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['nrgy'], data=df_filter, ax=axes2, color='orangered', label='energy')
-    axes2.legend()
+    if check_mood:
+        sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['val'], data=df_filter, ax=axes2, color='mediumvioletred', label='mood')
+    if check_dnce:
+        sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['dnce'], data=df_filter, ax=axes2, color='lightseagreen', label='danceability')
+    if check_pop:
+        sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['pop'], data=df_filter, ax=axes2, color='mediumseagreen', label='popularity')
+    if check_nrgy:
+        sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['nrgy'], data=df_filter, ax=axes2, color='orangered', label='energy')
+    axes2.legend(fontsize=15)
     tab2.pyplot(fig2)
+
+
+
+    
