@@ -186,9 +186,9 @@ else:
 
 
     fig2, axes2 = plt.subplots(figsize=(20, 15))
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['val'], data=df_filter, ax=axes2, color='mediumvioletred', label='mood')
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['dnce'], data=df_filter, ax=axes2, color='lightseagreen', label='danceability')
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['pop'], data=df_filter, ax=axes2, color='mediumseagreen', label='popularity')
-    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df.shape[0]), y=df_filter['nrgy'], data=df_filter, ax=axes2, color='orangered', label='energy')
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['val'], data=df_filter, ax=axes2, color='mediumvioletred', label='mood')
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['dnce'], data=df_filter, ax=axes2, color='lightseagreen', label='danceability')
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['pop'], data=df_filter, ax=axes2, color='mediumseagreen', label='popularity')
+    sns.lineplot(x=np.linspace(0,df_filter['dur'].sum(),num=df_filter.shape[0]), y=df_filter['nrgy'], data=df_filter, ax=axes2, color='orangered', label='energy')
     axes2.legend()
     tab2.pyplot(fig2)
