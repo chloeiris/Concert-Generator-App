@@ -29,7 +29,7 @@ with header:
 with st.sidebar:
     st.title(':red[What kind of playlist are you going to create?]')
 
-    @st.cache_resource(suppress_st_warning=True)
+    @st.cache_resource
     def gen_sliders(name, colname, message, start=0, stop=100, step=20):
         st.subheader(name)
         slider = st.slider(message, start, stop, step)
