@@ -106,16 +106,22 @@ with plots:
 
     tab1, tab2 = st.tabs(["Main traits", "Playlist Flow"])
 
-    @st.cache_resource
-    def check_char(name):
-        check_box = tab2.checkbox(f"Show {name.lower()}")
-        return check_box
-    
-    check_mood = check_char("mood")
-    check_dnce = check_char("danceability")
-    check_pop = check_char("popularity")
-    check_nrgy = check_char("energy")
+    check_mood = tab2.checkbox('Show mood')
+    check_dnce = tab2.checkbox('Show danceability')
+    check_pop = tab2.checkbox('Show popularity')
+    check_nrgy = tab2.checkbox('Show energy')
 
+    #@st.cache_resource
+    #def check_char(name):
+        #check_box = tab2.checkbox(f"Show {name.lower()}")
+        #return check_box
+    
+    #check_mood = check_char("mood")
+    #check_dnce = check_char("danceability")
+    #check_pop = check_char("popularity")
+    #check_nrgy = check_char("energy")
+    
+    @st.cache_resource
     def boxplots_chars(dataf, colnames, labels, facecolors, colors):
         fig, axes = plt.subplots(figsize=(20, 15))
         axes.boxplot(x=dataf[colnames[0]], widths=0.25, positions=[0.5], patch_artist= True, notch=False, labels=[labels[0]],
@@ -144,7 +150,7 @@ with plots:
                         medianprops=dict(color=colors[3], linewidth=1.5))
         return tab1.pyplot(fig)
     
-
+    @st.cache_resource
     def line_plots(dfr, colnames, colors, labels):
         fig2, axes2 = plt.subplots(figsize=(20, 15))
         if check_mood:
