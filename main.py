@@ -29,7 +29,7 @@ with header:
 with st.sidebar:
     st.title(':red[What kind of playlist are you going to create?]')
 
-    @st.cache_data
+    @st.cache_resource
     def gen_sliders(name, colname, message, start=0, stop=100, step=20):
         st.subheader(name)
         slider = st.slider(message, start, stop, step)
@@ -92,7 +92,7 @@ with plots:
 
     tab1, tab2 = st.tabs(["Main traits", "Playlist Flow"])
 
-    @st.cache_data
+    @st.cache_resource
     def check_char(name):
         check_box = tab2.checkbox(f"Show {name.lower()}")
         return check_box
