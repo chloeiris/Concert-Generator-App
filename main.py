@@ -67,12 +67,12 @@ with setlist:
     show_all = st.checkbox("Show all songs in the database")
 
     if show_all:
-        data = st.dataframe(df0)
-        data2 = pd.DataFrame(data)
+        st.dataframe(df0)
+        
     else:
         df_filter = df0[mood_filter & dnce_filter & pop_filter & nrgy_filter]
-        data = st.dataframe(df_filter)
-        data2 = pd.DataFrame(data)
+        st.dataframe(df_filter)
+        
 
 
 
@@ -164,8 +164,15 @@ with plots:
     facecolors = ['mediumvioletred', 'lightseagreen', 'mediumseagreen', 'lawngreen']
     colors = ['red', 'darkorange', 'orange', 'lawngreen']
 
-    boxplots_chars(data2, colnames, labels, facecolors, colors)
-    line_plots(data2, colnames, colors, labels)
+    if show_all:
+        boxplots_chars(df0, colnames, labels, facecolors, colors)
+        line_plots(df0, colnames, colors, labels)
+    else:
+        boxplots_chars(df_filter, colnames, labels, facecolors, colors)
+        line_plots(df_filter, colnames, colors, labels)
+
+    
+    
 
     
 
