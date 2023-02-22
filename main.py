@@ -15,7 +15,6 @@ df0 = load_data('topMusicJOB.csv')
 
 
 header = st.container()
-sliders = st.sidebar()
 setlist = st.container()
 counters = st.container()
 plots = st.container()
@@ -27,7 +26,7 @@ with header:
 
 
     
-with sliders:
+with st.sidebar:
     st.title(':red[What kind of playlist are you going to create?]')
 
     @st.cache_data
@@ -102,7 +101,7 @@ with plots:
     check_dnce = check_char("danceability")
     check_pop = check_char("popularity")
     check_nrgy = check_char("energy")
-    
+
     def boxplots_chars(dataf, colnames, labels, facecolors, colors):
         fig, axes = plt.subplots(figsize=(20, 15))
         axes.boxplot(x=dataf[colnames[0]], widths=0.25, positions=[0.5], patch_artist= True, notch=False, labels=[labels[0]],
