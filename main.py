@@ -148,7 +148,7 @@ with plots:
                         whiskerprops=dict(color=colors[3], linewidth=1.5),
                         flierprops=dict(color=colors[3], markeredgecolor=colors[3], linewidth=1.5),
                         medianprops=dict(color=colors[3], linewidth=1.5))
-        return tab1.pyplot(fig)
+        return fig
     
     @st.cache_resource
     def line_plots(dfr, colnames, colors, labels):
@@ -162,7 +162,7 @@ with plots:
         if check_nrgy:
             sns.lineplot(x=np.linspace(0,dfr['dur'].sum(),num=dfr.shape[0]), y=dfr[colnames[3]], data=dfr, ax=axes2, color=colors[3], label=labels[3])
         axes2.legend(fontsize=15)
-        return tab2.pyplot(fig2)
+        return fig2
 
     
     colnames = ['val', 'dnce', 'pop', 'nrgy']
@@ -171,11 +171,11 @@ with plots:
     colors = ['red', 'darkorange', 'orange', 'lawngreen']
 
     if show_all:
-        boxplots_chars(df0, colnames, labels, facecolors, colors)
-        line_plots(df0, colnames, colors, labels)
+        tab2.pyplot(boxplots_chars(df0, colnames, labels, facecolors, colors))
+        tab2.pyplot(line_plots(df0, colnames, colors, labels))
     else:
-        boxplots_chars(df_filter, colnames, labels, facecolors, colors)
-        line_plots(df_filter, colnames, colors, labels)
+        tab2.pyplot(boxplots_chars(df_filter, colnames, labels, facecolors, colors))
+        tab2.pyplot(line_plots(df_filter, colnames, colors, labels))
 
     
     
