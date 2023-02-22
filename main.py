@@ -29,23 +29,37 @@ with header:
 with st.sidebar:
     st.title(':red[What kind of playlist are you going to create?]')
 
-    @st.cache_resource
-    def gen_sliders(name, colname, message, start=0, stop=100, step=20):
-        st.subheader(name)
-        slider = st.slider(message, start, stop, step)
-        show_filter = st.checkbox(f"Apply {name.lower()} filter")
+    st.subheader('Mood')
+    mood_slider = st.slider('100 is happy mood', 0, 100, step=20)
+    show_mood = st.checkbox("Apply mood filter.")
 
-        if show_filter:
-            filter = df0[colname].isin(range(slider-step, slider+step))
+    st.subheader('Danceability')
+    dnce_slider = st.slider('100 is very danceable', 0, 100, step=20)
+    show_dnce = st.checkbox("Apply danceability filter")
+    
+    st.subheader('Popularity')
+    pop_slider = st.slider('100 is very popular', 0, 100, step=20)
+    show_pop = st.checkbox("Apply popularity filter")
+
+    st.subheader('Energy')
+    nrgy_slider = st.slider('100 is very energetic', 0, 100, step=20)
+    show_nrgy = st.checkbox("Apply energy filter")
+
+
+    @st.cache_resource
+    def gen_filters(checkbox_name, slider, colname):
+
+        if checkbox_name:
+            filter = df0[colname].isin(range(slider-20, slider+20))
         else:
-            filter = df0[colname].isin(range(stop))
+            filter = df0[colname].isin(range(100))
 
         return filter
 
-    mood_filter = gen_sliders('Mood', 'val', '100 is happy mood')
-    dnce_filter = gen_sliders('Danceabilty', 'dnce', '100 is very danceable')
-    pop_filter = gen_sliders('Popularity', 'pop', '100 is very popular')
-    nrgy_filter = gen_sliders('Energy', 'nrgy', '100 is very energetic')
+    mood_filter = gen_filters(show_mood, mood_slider, 'val')
+    dnce_filter = gen_filters(show_dnce, dnce_slider, 'dnce')
+    pop_filter = gen_filters(show_pop, pop_slider, 'pop')
+    nrgy_filter = gen_filters(show_nrgy, nrgy_slider, 'nrgy')
 
 
 
